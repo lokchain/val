@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Claim Your $23 💸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Satisfy&family=Poppins:wght@600&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffe4f0 0%, #ffd6e8 40%, #ffb3d1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Floating hearts background */
+    .hearts-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .heart-float {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: floatUp linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) rotate(0deg); opacity: 0.4; }
+      100% { transform: translateY(-10vh) rotate(20deg); opacity: 0; }
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      z-index: 10;
+      background: white;
+      border-radius: 32px;
+      padding: 48px 40px 44px;
+      max-width: 420px;
+      width: 90vw;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(255, 100, 150, 0.25), 0 4px 16px rgba(0,0,0,0.08);
+      animation: cardIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes cardIn {
+      from { transform: scale(0.7) translateY(40px); opacity: 0; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .mascot {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 8px;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .question {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.35rem;
+      color: #2d1b2e;
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+
+    .question span {
+      color: #e8326a;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: relative;
+      min-height: 60px;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #ff4d8d, #e8326a);
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(232, 50, 106, 0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 28px rgba(232, 50, 106, 0.5);
+    }
+
+    .btn-no {
+      background: transparent;
+      color: #999;
+      border: 2px solid #ddd;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      position: absolute;
+      transition: none;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .hint {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    /* Celebration screen */
+    .celebration {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .celebration.show {
+      display: flex;
+      animation: cardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    .celebration img {
+      width: 240px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(232, 50, 106, 0.25);
+    }
+
+    .thanku-text {
+      font-family: 'Satisfy', cursive;
+      font-size: 2rem;
+      color: #e8326a;
+      margin-top: 24px;
+      line-height: 1.3;
+      animation: pulseIn 0.7s ease both;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .sub-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      color: #888;
+      margin-top: 8px;
+      animation: pulseIn 0.7s ease both;
+      animation-delay: 0.5s;
+      opacity: 0;
+    }
+
+    @keyframes pulseIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    /* Confetti */
+    .confetti-piece {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      border-radius: 2px;
+      animation: confettiFall linear forwards;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes confettiFall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <!-- Main card -->
+  <div class="card" id="mainCard">
+    <div id="questionSection">
+      <span class="mascot">🐱</span>
+      <p class="question">
+        Prachi, to get <span>$23</span> tell me —<br/>
+        will you be my valentine? 💌
+      </p>
+      <div class="buttons" id="buttonsArea">
+        <button class="btn-yes" onclick="onYes()">Yes 💖</button>
+        <button class="btn-no" id="noBtn">No</button>
+      </div>
+      <p class="hint">"No" seems a bit shy 🐾</p>
+    </div>
+
+    <!-- Celebration -->
+    <div class="celebration" id="celebration">
+      <img
+        src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif"
+        alt="celebration"
+        onerror="this.src='https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif'"
+      />
+      <p class="thanku-text">Shukriya Tiwari Ji! 🎉</p>
+      <p class="sub-text">I'm meeting you soon with $23 and your YES 💸🌸</p>
+    </div>
+  </div>
+
+<script>
+  // --- Floating hearts ---
+  const emojis = ['💖','💕','✨','🌸','💗','🌷','💝'];
+  const bg = document.getElementById('heartsBg');
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart-float';
+    h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+    h.style.animationDuration = (6 + Math.random() * 8) + 's';
+    h.style.animationDelay = (Math.random() * 8) + 's';
+    bg.appendChild(h);
+  }
+
+  // --- No button escape logic ---
+  const noBtn = document.getElementById('noBtn');
+  const area  = document.getElementById('buttonsArea');
+
+  function moveNoBtn() {
+    const areaRect = area.getBoundingClientRect();
+    const cardRect = document.getElementById('mainCard').getBoundingClientRect();
+
+    const maxX = cardRect.width  - noBtn.offsetWidth  - 20;
+    const maxY = cardRect.height - noBtn.offsetHeight - 20;
+
+    const randX = Math.random() * maxX - maxX / 2;
+    const randY = (Math.random() - 0.5) * 80;
+
+    noBtn.style.left = (cardRect.width / 2 + randX) + 'px';
+    noBtn.style.top  = (areaRect.top - cardRect.top + randY) + 'px';
+    noBtn.style.position = 'fixed'; // fallback
+    noBtn.style.position = 'absolute';
+  }
+
+  // Desktop hover
+  noBtn.addEventListener('mouseover', moveNoBtn);
+
+  // Mobile touch — detect touch near button
+  document.addEventListener('touchmove', (e) => {
+    const t = e.touches[0];
+    const r = noBtn.getBoundingClientRect();
+    const buffer = 60;
+    if (
+      t.clientX > r.left - buffer && t.clientX < r.right  + buffer &&
+      t.clientY > r.top  - buffer && t.clientY < r.bottom + buffer
+    ) {
+      moveNoBtn();
+    }
+  }, { passive: true });
+
+  noBtn.addEventListener('touchstart', moveNoBtn, { passive: true });
+  noBtn.addEventListener('click', moveNoBtn);
+
+  // Position no button initially
+  window.addEventListener('load', () => {
+    const cardRect = document.getElementById('mainCard').getBoundingClientRect();
+    const areaRect = area.getBoundingClientRect();
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = (cardRect.width * 0.62) + 'px';
+    noBtn.style.top  = (areaRect.top - cardRect.top + 8) + 'px';
+  });
+
+  // --- Yes action ---
+  function onYes() {
+    document.getElementById('questionSection').style.display = 'none';
+    const cel = document.getElementById('celebration');
+    cel.classList.add('show');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    const colors = ['#ff4d8d','#ffb3d1','#ffe066','#66d9ff','#a855f7','#34d399'];
+    for (let i = 0; i < 80; i++) {
+      setTimeout(() => {
+        const c = document.createElement('div');
+        c.className = 'confetti-piece';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.background = colors[Math.floor(Math.random() * colors.length)];
+        c.style.width  = (6 + Math.random() * 8) + 'px';
+        c.style.height = (6 + Math.random() * 8) + 'px';
+        c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        c.style.animationDuration = (2 + Math.random() * 2) + 's';
+        c.style.animationDelay = '0s';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+      }, i * 30);
+    }
+  }
+</script>
+</body>
+</html>
