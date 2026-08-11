@@ -272,61 +272,94 @@
     color: var(--muted-2);
     font-size: 12px;
     border-top: 1px solid var(--line);
-  .summit-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:14px;
-    padding: 10px 18px;
-    margin-bottom: 22px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--panel);
+  .title-row{
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap: 16px;
+    margin-bottom: 8px;
   }
-  .summit-badge .sb-label{
+  .exp-marker{
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--muted-2);
+    display:inline-flex;
+    align-items:baseline;
+    gap: 8px;
+  }
+  .exp-marker .exp-dot{ color: var(--c-mountain); }
+  .exp-marker .exp-name{ color: var(--muted); }
+  .exp-marker .exp-handle{ color: var(--muted-2); }
+
+  /* ===== Quick nav — jump to zone / state ===== */
+  .quicknav{
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .qn-title{
     font-size: 11px;
     letter-spacing: 0.12em;
-    color: var(--text);
-    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin-bottom: 14px;
   }
-  .summit-badge .sb-dots{
+  .qn-grid{
     display:flex;
-    gap: 6px;
+    flex-direction: column;
+    gap: 8px;
   }
-  .summit-badge .sb-dots span{
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    display:inline-block;
+  .qn-row{
+    display:flex;
+    align-items:center;
+    gap: 16px;
+    padding: 12px 16px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    flex-wrap: wrap;
   }
-  .summit-badge .sb-divider{
-    width: 1px; height: 14px;
-    background: var(--line);
+  .qn-zone-name{
+    flex: 0 0 auto;
+    width: 168px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    line-height: 1.3;
   }
-  .summit-badge .sb-timeline{
-    font-size: 11px;
-    letter-spacing: 0.06em;
+  .qn-zone-name:hover{ text-decoration: underline; }
+  .qn-states{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .qn-states a{
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
     color: var(--muted);
+    text-decoration: none;
+    background: var(--panel-2);
+    white-space: nowrap;
   }
-  .summit-badge .sb-timeline b{ color: var(--c-mountain); font-weight:700; }
+  .qn-states a:hover{
+    color: var(--text);
+    border-color: var(--muted-2);
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="summit-badge mono">
-    <span class="sb-label">SUMM_ITIND</span>
-    <span class="sb-dots">
-      <span style="background:var(--c-mountain)"></span>
-      <span style="background:var(--c-historical)"></span>
-      <span style="background:var(--c-spiritual)"></span>
-      <span style="background:var(--c-wildlife)"></span>
-      <span style="background:var(--c-modern)"></span>
-      <span style="background:var(--c-adventure)"></span>
-      <span style="background:var(--c-beach)"></span>
-    </span>
-    <span class="sb-divider"></span>
-    <span class="sb-timeline">MAP COMPLETE · FIELD WALK <b>2027 → 2028</b></span>
+  <div class="doc-id mono">TRAVERSE LOG COMPLETE — SUMMITS OF INDIA MAPPED — SUMMIT WALK — TIMELINE 2027–2028</div>
+  <div class="title-row">
+    <h1>India <span>528</span></h1>
+    <span class="exp-marker mono"><span class="exp-dot">◆</span><span class="exp-name">summ_itind</span><span class="exp-handle">@summ_itind</span></span>
   </div>
-  <h1>India <span>528</span></h1>
   <div class="subhead">Sequenced, non-looping ground route across every state and union territory — peaks, heritage sites, spiritual sites, wildlife zones, modern-built landmarks, and adventure points, tagged by district and region. Built zone by zone from sourced data, not filler.</div>
   <div class="manifest mono">
     <div class="cell"><b>7</b><small>Zones</small></div>
@@ -334,6 +367,83 @@
     <div class="cell"><b>7</b><small>Zones Complete</small></div>
     <div class="cell"><b>36 / 36</b><small>States/UTs Live</small></div>
   </div>
+
+  <nav class="quicknav">
+    <div class="qn-title mono">Jump to a zone or state — no scrolling</div>
+    <div class="qn-grid">
+      <div class="qn-row">
+        <a href="#zone-1" class="qn-zone-name mono" style="color:var(--c-mountain)">ZONE 1<br>Northeast</a>
+        <div class="qn-states">
+          <a href="#sikkim">Sikkim</a>
+          <a href="#assam">Assam</a>
+          <a href="#meghalaya">Meghalaya</a>
+          <a href="#tripura">Tripura</a>
+          <a href="#mizoram">Mizoram</a>
+          <a href="#manipur">Manipur</a>
+          <a href="#nagaland">Nagaland</a>
+          <a href="#arunachal">Arunachal Pradesh</a>
+        </div>
+      </div>
+      <div class="qn-row">
+        <a href="#zone-2" class="qn-zone-name mono" style="color:var(--c-historical)">ZONE 2<br>East</a>
+        <div class="qn-states">
+          <a href="#west-bengal-north">West Bengal</a>
+          <a href="#odisha">Odisha</a>
+          <a href="#jharkhand">Jharkhand</a>
+          <a href="#bihar">Bihar</a>
+        </div>
+      </div>
+      <div class="qn-row">
+        <a href="#zone-3" class="qn-zone-name mono" style="color:var(--c-spiritual)">ZONE 3<br>N. Himalayan</a>
+        <div class="qn-states">
+          <a href="#uttarakhand">Uttarakhand</a>
+          <a href="#himachal">Himachal Pradesh</a>
+          <a href="#jk">Jammu &amp; Kashmir</a>
+          <a href="#ladakh">Ladakh</a>
+          <a href="#punjab">Punjab</a>
+          <a href="#haryana">Haryana</a>
+          <a href="#delhi">Delhi</a>
+          <a href="#chandigarh">Chandigarh</a>
+        </div>
+      </div>
+      <div class="qn-row">
+        <a href="#zone-4" class="qn-zone-name mono" style="color:var(--c-wildlife)">ZONE 4<br>Central</a>
+        <div class="qn-states">
+          <a href="#uttar-pradesh">Uttar Pradesh</a>
+          <a href="#madhya-pradesh">Madhya Pradesh</a>
+          <a href="#chhattisgarh">Chhattisgarh</a>
+        </div>
+      </div>
+      <div class="qn-row">
+        <a href="#zone-5" class="qn-zone-name mono" style="color:var(--c-modern)">ZONE 5<br>West</a>
+        <div class="qn-states">
+          <a href="#rajasthan">Rajasthan</a>
+          <a href="#gujarat">Gujarat</a>
+          <a href="#maharashtra">Maharashtra</a>
+          <a href="#goa">Goa</a>
+          <a href="#dnhdd">DNH &amp; DD</a>
+        </div>
+      </div>
+      <div class="qn-row">
+        <a href="#zone-6" class="qn-zone-name mono" style="color:var(--c-adventure)">ZONE 6<br>South</a>
+        <div class="qn-states">
+          <a href="#karnataka">Karnataka</a>
+          <a href="#kerala">Kerala</a>
+          <a href="#tamil-nadu">Tamil Nadu</a>
+          <a href="#andhra-pradesh">Andhra Pradesh</a>
+          <a href="#telangana">Telangana</a>
+          <a href="#puducherry">Puducherry</a>
+        </div>
+      </div>
+      <div class="qn-row">
+        <a href="#zone-7" class="qn-zone-name mono" style="color:var(--c-beach)">ZONE 7<br>Islands</a>
+        <div class="qn-states">
+          <a href="#andaman-nicobar">Andaman &amp; Nicobar</a>
+          <a href="#lakshadweep">Lakshadweep</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 </header>
 
 <div class="legend">
@@ -349,7 +459,7 @@
 <main>
 
   <!-- ================= ZONE 1: NORTHEAST ================= -->
-  <div class="zone-head">
+  <div class="zone-head" id="zone-1">
     <span class="zn mono">ZONE 1</span>
     <h2>Northeast</h2>
   </div>
@@ -1375,7 +1485,7 @@
   </div>
 
   <!-- ================= ZONE 2: EAST ================= -->
-  <div class="zone-head">
+  <div class="zone-head" id="zone-2">
     <span class="zn mono">ZONE 2</span>
     <h2>East</h2>
   </div>
@@ -1946,7 +2056,7 @@
   </div>
 
   <!-- ================= ZONE 3: NORTH HIMALAYAN ================= -->
-  <div class="zone-head">
+  <div class="zone-head" id="zone-3">
     <span class="zn mono">ZONE 3</span>
     <h2>North Himalayan</h2>
   </div>
@@ -2751,7 +2861,7 @@
   </div>
 
   <!-- ================= ZONE 4: CENTRAL ================= -->
-  <div class="zone-head">
+  <div class="zone-head" id="zone-4">
     <span class="zn mono">ZONE 4</span>
     <h2>Central</h2>
   </div>
@@ -3113,7 +3223,7 @@
   </div>
 
   <!-- ================= ZONE 5: WEST ================= -->
-  <div class="zone-head">
+  <div class="zone-head" id="zone-5">
     <span class="zn mono">ZONE 5</span>
     <h2>West</h2>
   </div>
@@ -3628,7 +3738,7 @@
   </div>
 
   <!-- ================= ZONE 6: SOUTH ================= -->
-  <div class="zone-head">
+  <div class="zone-head" id="zone-6">
     <span class="zn mono">ZONE 6</span>
     <h2>South</h2>
   </div>
@@ -4205,7 +4315,7 @@
   </div>
 
   <!-- ================= ZONE 7: ISLANDS ================= -->
-  <div class="zone-head">
+  <div class="zone-head" id="zone-7">
     <span class="zn mono">ZONE 7</span>
     <h2>Islands</h2>
   </div>
